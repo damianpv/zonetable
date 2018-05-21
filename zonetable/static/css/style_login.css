@@ -1,0 +1,108 @@
+
+.menu_top { float: left; position: relative; width: 100%; }
+.menu_top h1 { float: left; position: relative; width: 50%; }
+.menu_top .menu { float: right; margin-top: 8px; position: relative; text-align: right; width: 30%; }
+.menu_top .separator { float: left; margin-bottom: 10px !important; position: relative; width: 92.6%; }
+
+
+/************ Dashboard ************/
+
+.dashboard { float: left; position: relative; width: 100%; }
+.dashboard .menu { margin-bottom: 10px; text-align: right; }
+.dashboard .left { float: left; position: relative; width: 380px; }
+.dashboard .right { float: right; position: relative; width: 250px; }
+.dashboard .right ul { margin: 0; padding: 0; }
+
+/*********** Restaurant ***********/
+
+.restaurant .status { font-weight: bold; width: 40px; }
+.restaurant .imagen, .restaurant .imagen img { width: 100px; }
+.restaurant .option { width: 80px; }
+.restaurant .margin_r { margin-right: 5px; }
+.restaurant .menu { margin-bottom: 10px; text-align: right; }
+.restaurant fieldset .left { float: left; position: relative; width: 180px; }
+.restaurant fieldset .left label { padding-top: 5px; }
+.restaurant fieldset .right { float: right; position: relative; width: 450px; }
+.restaurant fieldset .right ul { list-style-type: none; margin: 0; padding: 0; }
+.restaurant fieldset .right ul li { float: left; }
+.restaurant fieldset .right ul li label[for="id_comentarios_0"], .restaurant fieldset .right ul li label[for="id_comentarios_1"] { margin-top: 3px; width: 50px; }
+.restaurant fieldset .right ul li label[for="id_comentarios_0"] input, .restaurant fieldset .right ul li label[for="id_comentarios_1"] input { margin-top: -3px; }
+.restaurant #map_canvas { height: 400px; width: 580px; }
+.restaurant #id_twitter { width: 208px; }
+.restaurant .msg_error { color: #FF0000; text-align: center; width: 100%; }
+
+/*********** Package ***********/
+
+.package .include { float: left; position: relative; width: 45px; }
+.package .content { float: left; }
+.package .contratar { float: right; position: relative; width: 355px; }
+.package .contratar .left { float: left; padding-top: 5px; position: relative; text-align: right; width: 190px; }
+.package .contratar .left { float: left; padding-top: 5px; position: relative; text-align: right; width: 190px; }
+.package .contratar .right { float: right; position: relative; width: 160px; }
+.package .contratar .right select { float: left; position: relative; }
+.package .contratar .right span { float: left; margin-left: 10px; padding-top: 5px; position: relative; }
+.package .row { float: right; position: relative; width: 100%; }
+
+.package .contrato { float: right; margin-bottom: 10px; position: relative; width: 262px; }
+.package .contrato .left { float: left; position: relative; text-align: right; width: 189px; }
+.package .contrato .right { float: right; position: relative; width: 63px; margin-right: 8px; text-align: right; }
+
+.package .subtotal, .package .total { float: right; margin-bottom: 10px; margin-right: 8px; position: relative; width: 120px; }
+.package .subtotal .left, .package .total .left { float: left; position: relative; text-align: right; width: 55px; }
+.package .subtotal .right, .package .total .right { float: right; position: relative; width: 50px; text-align: right; }
+
+/*********** Package ***********/
+
+.pagos .row { float: left; position: relative; width: 100%; }
+.pagos .invoice { float: left; position: relative; width: 100%; }
+.pagos .invoice .left { float: left; position: relative; text-align: right; width: 140px; }
+.pagos .invoice .right { float: left; position: relative; width: 500px; margin-left: 10px; }
+
+/*********** Historial ***********/
+
+.historial .option { width: 80px; }
+.historial .btn-warning { text-align: center; }
+.historial .btn-danger { text-align: center; }
+.historial .btn-success { text-align: center; }
+
+/*********** Mis Reservaciones : Listar ***********/
+
+.my_reservations { float: left; position: relative; width: 100%; }
+.my_reservations .status { width: 80px; }
+.my_reservations .option { width: 90px; }
+.my_reservations .btn-warning { text-align: center; }
+.my_reservations .btn-danger { text-align: center; }
+.my_reservations .btn-info { text-align: center; }
+.my_reservations .btn-success { text-align: center; }
+.my_reservations .btn-group { float: right; }
+
+#reservation .modal-body p span { width: 130px; }
+#reservation .modal-body .input-prepend { white-space: normal; }
+#reservation .modal-body .ej_score { float: right; font-size: 12px; margin-top: 6px; width: 130px; }
+
+#reservation .modal-body .msg_reservation { color: #FF0000; font-family: 'Arial'; font-weight: bold; float: left; height: 18px; margin: 5px 0px 5px 0px; position: relative; text-align: center; width: 100%; }
+
+/*********** Mis Reservaciones : Agregar ***********/
+
+.add_reservations .errorlist { width: 155px !important; }
+.add_reservations { float: left; position: relative; width: 100%; }
+.add_reservations .ui-datepicker-trigger { background: #FFF; margin-top: -11px; }
+.add_reservations fieldset .left { float: left; position: relative; width: 180px; }
+.add_reservations fieldset .left label { padding-top: 5px; }
+.add_reservations fieldset .right { float: right; position: relative; width: 460px; }
+.add_reservations fieldset .right #id_date { width: 100px !important; }
+.add_reservations fieldset .right input,
+.add_reservations fieldset .right textarea { width: 286px; }
+.add_reservations fieldset .right select { width: 300px; }
+.add_reservations fieldset .right ul { list-style-type: none; margin: 0; padding: 0; }
+.add_reservations fieldset .right ul li { float: left; margin-right: 20px; }
+.add_reservations fieldset .right ul li label[for="id_type_0"] input, 
+.add_reservations fieldset .right ul li label[for="id_type_1"] input { margin-top: 0; width: 20px; }
+.add_reservations .btn_submit { float: left; position: relative; width: 518px; }
+.add_reservations .msg_error { color: #FF0000; text-align: center; width: 100%; }
+.add_reservations .input-append input { width: 150px !important; }
+.add_reservations .input-append { float: left; margin-bottom: 10px; }
+.add_reservations .right small { float: left; margin: 0px 0 0 5px; position: relative; line-height: 13px; }
+.add_reservations .right small div { height: 13px; }
+.add_reservations .right small div.error { color: #FF0000; }
+.add_reservations .right small div.ok { color: #3A87AD; font-weight: bold; }

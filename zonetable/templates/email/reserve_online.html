@@ -1,0 +1,36 @@
+{% load static from staticfiles %}
+{% autoescape off %}
+<table width="95%" border="0" cellspacing="0" cellpadding="0" style="font-family:'Arial'">
+  <tr>
+    <td width="30%" height="88" valign="top"><img src="{% static 'img/assets/logo.jpg' %}" width="140" height="75"></td>
+    <td width="70%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" style="border-top: solid 1px #0EA7FF;"><table width="90%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>{{content}}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="24" valign="top"><strong>El Equipo de zonetable</strong></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.zonetable.com/">www.zonetable.com</a></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+ <tr>
+    <td height="40" colspan="2" align="center" style="border-top: solid 1px #0EA7FF; font-size:11px;">&iquest;Has olvidado tu contrase&ntilde;a de zonetable? <a href="http://www.zonetable.com/">Obt&eacute;n instrucciones para restablecerla.</a><br>
+      <br>
+      Has recibido este correo porque se ha registrado una reserva en l&iacute;nea.</td>
+  </tr>
+</table>
+{% endautoescape %}

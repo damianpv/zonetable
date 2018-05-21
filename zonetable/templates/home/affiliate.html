@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+
+{% block title %} Afiliados | {% endblock %}
+{% block social %}
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="Afiliados" />
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block js %}
+{% endblock %}
+
+{% block content %}
+			<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+
+				<div id="content" class="span13">
+
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">{{ content.title }}</h1>
+
+										<div class="separator"></div>
+									</div>
+									<div class="article-content">
+										<p>ZoneTable te permite afiliar tu Establecimiento (Restaurante/Bar/Café/etc). Ponemos a tu disposición el directorio de zonetable, así como herramientas para que cuentes con servicios como reservas en línea.</p>
+
+										<h3 class="post-lead">Ventajas</h3>
+										<ol>
+											<li>Los usuarios podrán realizar reservaciones en línea.</li>
+											<li>Administra las reservaciones realizadas por los usuarios.</li>
+											<li>Incluye las reservaciones que realicen vía telefónica.</li>
+											<li>Participa en el sistema de recompensas de Puntos Comensales.</li>
+											<li>Manten la descripción de tu Establecimiento actualizada.</li>
+										</ol></p>
+
+										<h3 class="post-lead">¿Como Afiliarme ?</h3>
+										<p>Puedes registrarte en zonetable mediante el formulario de <strong><a href="/register/">registro</a></strong>. Luego podrás agregar un establecimiento.</p>
+
+										<h3 class="post-lead">Precio</h3>
+										<p>Registraste y afiliarte en ZoneTable es gratis. No pagarás por agregar/afiliar tu establecimiento en ZoneTable.</p>
+
+                                        <p>Solo deber&aacute;s pagar por las reservaciones completadas en su establecimiento, restaurante, bar, etc. El precio ser&aacute; de 1 USD o su equivalente en su moneda local.</p>
+
+
+                                        <blockquote>
+                                            <p>Vigente a partir de Noviembre de 2013</p>
+                                        </blockquote>
+										{% comment %}
+										<p>ZoneTable tampoco cobrará por las reservaciones que sean completadas. Si se necesitara comprar alguna mínima cantidad con el objetivo de , ZoneTable notificará con anticipación a sus usuarios.</p>
+                                        {% endcomment %}
+
+										{% comment %}
+										<p>Ponemos a su disposición los paquetes actuales que puede contratar para ser parte de zonetable.</p>
+
+										<table class="table table-striped" style="margin:auto;width: 90%;">
+											<thead>
+												<tr>
+													<td><strong>Paquete</strong></td>
+													<td class="option"><strong>Precio USD / Mes</strong></td>
+												</tr>
+											</thead>
+											<tbody>
+												{% for package in list_package %}
+												<tr>
+													<td>
+														<strong>{{ package.title }}</strong> <br> <div class="include"><strong>Incluye:</strong></div> <div class="content">{{ package.content|safe }}</div>
+													</td>
+													<td style="text-align: right;width: 100px;">
+														{% if package.price %}
+														$ {{ package.price }}
+														{% else %}
+														Gratuito
+														{% endif %}
+													</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+
+
+										<h3 class="post-lead">Formas de Pago</h3>
+										<p>Para realizar pagos de los paquetes contratados puedes realizarlo mediante Tarjeta de Crédito, Debito a través de Paypal.</p>
+										{% endcomment %}
+									</div>
+								</article>
+
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>
+
+				{% include "sidebar/right.html" %}
+
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

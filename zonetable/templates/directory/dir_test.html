@@ -1,0 +1,15 @@
+{% load static from staticfiles %}
+
+{% load thumbnail %}
+
+{% for galerys in galery %}
+	{% thumbnail galerys.image "x100" as im %}
+		<img src="{{im.url}}" alt="img">
+	{% endthumbnail %}
+{% endfor %}
+
+<hr >
+
+{% for galerys in galery %}
+	<img src="{% static '{{galerys.image}}' %}" alt="img" height="30" width="30" />
+{% endfor %}

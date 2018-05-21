@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %} Contenidos | {% endblock %}
+{% block social %}
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="Restaurantes, Cafes, Bares" />
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block js %}
+{% endblock %}
+
+{% block content %}
+			<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+
+				<div id="content" class="span13">
+
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">{{ content.title }}</h1>
+
+										<div class="separator"></div>
+									</div>
+									<div class="article-content">
+										{{ content.content|safe }}
+									</div>
+								</article>
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>
+
+				{% include "sidebar/right.html" %}
+
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

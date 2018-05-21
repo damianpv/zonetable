@@ -1,0 +1,219 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+{% block title %} Paquete a Contratar | {% endblock %}
+{% block social %}	
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="" />
+{% endblock %}
+{% block css %}	
+	<link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+{% endblock %}
+{% block js %}
+	<script lang="javascript" src="{% static 'js/dj_fw.js' %}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			price = ($('#subtotal').val().replace(',', '.') * $('#id_pay_months').val()).toFixed(2);
+			$('.total .right').html(price)
+			$('#id_price').val(price)
+				
+			$('#id_pay_months').change(function(){
+				price = ($('#subtotal').val().replace(',', '.') * $('#id_pay_months').val()).toFixed(2);
+				$('.total .right').html(price)
+				$('#id_price').val(price)
+			});
+		});
+
+		$(document).ajaxStart(function(){
+		    $('#spinner').show();
+		}).ajaxStop(function(){
+		    $('#spinner').hide();
+		});
+
+	</script> 
+{% endblock %}
+
+{% block content %}
+		<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+							
+				<div id="content" class="span8">
+				  
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">Paquete a Contratar</h1>
+										<div class="separator"></div>
+									</div>
+									<div class="article-content package">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<td><strong>Paquete</strong></td>
+													<td class="option"><strong>Precio USD / Mes</strong></td>
+												</tr>
+											</thead>
+											<tbody>
+												{% for package in list_package %}
+												<tr>
+													<td>
+														<strong>{{ package.title }}</strong> <br> <div class="include"><strong>Incluye:</strong></div> <div class="content">{{ package.content|safe }}</div>
+													</td>
+													<td style="text-align: right;width: 100px;">
+														{% if package.price %}
+														$ {{ package.price }}
+														{% else %}
+														Gratuito
+														{% endif %}
+													</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										{% if not form_sent %}
+										<form action="." method="POST">
+											{% csrf_token %}
+											{{ form_package.non_field_errors }}
+											<div class="msg_error">{{ msg_error }}</div>
+											{{ form_package.package }}
+											<div class="row">
+												<div class="contratar">
+													<div class="left">
+														Tiempo de Contrato (Renovable):
+													</div>
+													<div class="right">
+														{{ form_package.pay_months }}
+														{{ form_package.pay_months.errors }} <span>Mes(es)</span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="contratar">
+													<div class="left">
+														Forma de Pago:
+													</div>
+													<div class="right">
+														{{ form_package.payment }}
+														{{ form_package.payment.errors }}
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="subtotal">
+													<div class="left">
+														Subtotal:
+													</div>
+													<div class="right">
+														{{ total_package.price }}
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="total">
+													<div class="left">
+														Total:
+													</div>
+													<div class="right">
+														{{ total_package.price }}
+													</div>
+												</div>
+											</div>
+											<input name="subtotal" type="hidden" id="subtotal" value="{{ total_package.price }}" />
+											{{ form_package.concept }}
+											{{ form_package.price }}
+											<div class="row">
+												<button type="submit" class="pull-right btn btn-flat">Contratar Paquete</button>
+											</div>
+										</form>
+										{% else %}
+										<form action="{{ paypal_url }}" method="POST">
+											<div class="row">
+												<div class="contrato">
+													<div class="left">
+														Tiempo de Contrato (Renovable):
+													</div>
+													<div class="right">
+														{{ pay_months }} Mes{{ pay_months|pluralize:"es" }}
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="subtotal">
+													<div class="left">
+														Subtotal:
+													</div>
+													<div class="right">
+														{{ total_package.price }}
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="total">
+													<div class="left">
+														Total:
+													</div>
+													<div class="right">
+														{{ total_price }}
+													</div>
+												</div>
+											</div>
+
+											<input type="hidden" name="upload" value="1">
+											<input type="hidden" name="invoice" value="{{ pay_id }}">
+											<input type="hidden" name="custom" value="Payment ID: {{ pay_id }}">
+
+											<input type="hidden" name="item_name_1" value="Publicar Establecimiento">
+											<input type="hidden" name="amount_1" value="{{ total_price }}">
+											<input type="hidden" name="on0_1" value="Incluye">
+											<input type="hidden" name="os0_1" value="1 Mes gratis.">
+
+											<input type="hidden" name="item_name_2" value="Soporte">
+											<input type="hidden" name="amount_2" value="0">
+											<input type="hidden" name="on0_2" value="Costo">
+											<input type="hidden" name="os0_2" value="Gratis">
+
+											<!--
+											<input type="hidden" name="amount" value="{{ total_price }}">
+											<input type="hidden" name="item_name" value="{{ concept }}">
+											-->
+											<input type="hidden" name="cmd" value="_cart">
+											<input type="hidden" name="business" value="{{ paypal_email }}">
+											<input type="hidden" name="currency_code" value="USD">
+											<input type="hidden" name="cancel_return" value="{{ paypal_cancel_url }}">
+											<input type="hidden" name="return" value="{{ paypal_return_url }}">
+											<input type="hidden" name="rm" value="2">
+
+											<div class="row">
+												<button type="submit" class="pull-right btn btn-flat">Confirmar y Pagar</button>
+											</div>
+										</form>
+										{% endif %}
+										<div class="row fp">
+											<ul>
+												<li><img src="{% static 'img/fp_paypal.png' %}" alt="Paypal" /></li>
+												<li><img src="{% static 'img/fp_mastercard.png' %}" alt="Master Card" /></li>
+												<li><img src="{% static 'img/fp_visa.png' %}" alt="Visa" /></li>
+												<li><img src="{% static 'img/fp_amex.png' %}" alt="American Express" /></li>
+											</ul>
+										</div>
+										{{test}}
+									    <br class="clear" />
+									</div>
+								</article>
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>			
+				
+				{% include "sidebar/right_menu_users.html" %}
+				
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

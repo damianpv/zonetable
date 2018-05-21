@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /referer/
+Disallow: /confirm/
+Disallow: /logout/
+Disallow: /get_state/
+Disallow: /get_restaurant/
+Disallow: /admin/
+Disallow: /whois_set/
+Disallow: /whois_get/
+Disallow: /set_rate/
+Disallow: /accounts/

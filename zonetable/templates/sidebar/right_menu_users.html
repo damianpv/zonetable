@@ -1,0 +1,49 @@
+				<div id="left-sidebar" class="span3 visible-desktop">
+					<!-- Sidebar Block Widget -->
+					<div class="sidebar-widget sidebar-block">
+						<div class="sidebar-header">
+							<h4>Menú de Usuario</h4>
+							<div class="separator"></div>
+						</div>
+						<div class="sidebar-content menu-widget">
+							<ul>
+								<li style="padding: 5px 0;">
+									<a href="{% url 'go_dashboard' %}" title="Dashboard">Dashboard</a>
+								</li>
+								<li style="padding: 5px 0;">
+									<a href="{% url 'go_user_profile' %}" title="Perfil">Editar Perfil</a>
+								</li>
+								<li style="padding: 5px 0;">
+									<a href="{% url 'go_list_user_reservation' page=1 %}" title="Mis Reservaciones">Mis Reservaciones</a>
+								</li>
+								<li style="padding: 5px 0;">
+									<a href="{% url 'go_referer' %}" title="Referidos">Referidos</a>
+								</li>
+								<!--
+								<li style="padding: 5px 0;">
+									<a href="#" title="Recomendar sitio">Recomendar sitio</a>
+								</li>
+								-->
+							</ul>
+						</div>
+						<br />
+						<div class="sidebar-header">
+							<h4>Administrar</h4>
+							<div class="separator"></div>
+						</div>
+						<div class="sidebar-content menu-widget">
+							<ul>
+								<li style="padding: 5px 0;">
+									<span class="icon-white mn_span icon-plus-sign"></span>
+									<a href="{% url 'go_list_sheets' page=1 %}" title="Establecimientos">Establecimientos</a>
+								</li>
+								{% comment %}
+								<li style="padding: 5px 0;">
+									<a href="{% url 'go_list_payments' page=1 %}" title="Historial de Pagos">Historial de Pagos</a>
+								</li>
+								{% endcomment %}
+							</ul>
+						</div>
+					</div>
+					<!-- end -->
+				</div>

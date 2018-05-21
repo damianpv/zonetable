@@ -1,0 +1,57 @@
+{% load static from staticfiles %}
+				<div id="left-sidebar" class="span3 visible-desktop">
+					<!-- Sidebar Block Widget -->
+					<div class="sidebar-widget sidebar-block">
+						<div class="sidebar-header">
+							<h4>Tipo de Comida</h4>
+							<div class="separator"></div>
+						</div>
+						{% if list_category %}
+						<div class="sidebar-content menu-widget">
+							<ul>
+								{% for category in list_category %}
+								<li style="padding: 5px 0;">
+									<a href="/category/{{ category.url_name }}/1/" title="{{ category.title }}">{{ category.title }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						{% endif %}
+					</div>
+
+					{% if visible == 1 %}
+					<!-- Latest News Widget -->
+					<div class="sidebar-widget" id="latest-news">
+						
+						<div class="sidebar-header">
+							<h4>Latest News</h4>
+							<div class="separator"></div>
+						</div>
+						<div class="sidebar-content post-widget">
+							<ul>
+								<li class="sidebar-item">
+									<a href="#" class="image-polaroid" title="Title">
+										<img src="{% static 'img/assets/slideshow/thumbnail-square.png' %}" alt="Image" />
+									</a>
+									<h5><a href="#">Consectetur Adipiscing Elit Maecenas Justo Massa</a></h5>
+									<span class="post-date"><em>November, 10 2012</em></span>
+								</li>
+								<li class="sidebar-item">
+									<a href="#" class="image-polaroid" title="Title">
+										<img src="{% static 'img/assets/slideshow/thumbnail-square.png' %}" alt="Image" />
+									</a>
+									<h5><a href="#">Consectetur Adipiscing Elit Maecenas Justo Massa</a></h5>
+									<span class="post-date"><em>November, 10 2012</em></span>
+								</li>
+								<li class="sidebar-item">
+									<a href="#" class="image-polaroid" title="Title">
+										<img src="{% static 'img/assets/slideshow/thumbnail-square.png' %}" alt="Image" />
+									</a>
+									<h5><a href="#">Consectetur Adipiscing Elit Maecenas Justo Massa</a></h5>
+									<span class="post-date"><em>November, 10 2012</em></span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					{% endif %}
+				</div>

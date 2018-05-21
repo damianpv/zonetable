@@ -1,0 +1,76 @@
+{% load static from staticfiles %}
+<!-- Main Slider Start -->
+		<div class="container hidden-phone" id="slideshow">
+			<section id="slider" class="row">
+				<div class="span8">
+					<!-- Begin Slider -->
+					<div class="camera_wrap camera_azure_skin" id="cameraslide">
+						<div class="camera-slide-wrapper span8" data-src="{{ STATIC_URL }}/img/demo/foto.jpg">
+							<div class="camera_caption fadeFromLeft">            Afilia tu Restaurante, Cafe, Bar ... : Se parte de zonetable.</div>
+						</div>
+			            <div class="camera-slide-wrapper span8" data-src="{{ STATIC_URL }}/img/demo/foto1.jpg">
+			            	<div class="camera_caption fadeFromLeft">            Afilia tu Restaurante, Cafe, Bar ... : Se parte de zonetable.</div>
+			            </div>
+			            <div class="camera-slide-wrapper span8" data-src="{{ STATIC_URL }}img/demo/foto2.jpg">
+			            	<div class="camera_caption fadeFromLeft">            Afilia tu Restaurante, Cafe, Bar ... : Se parte de zonetable.</div>
+			            </div>
+			            <div class="camera-slide-wrapper span8" data-src="{{ STATIC_URL }}img/demo/foto3.jpg">
+			            	<div class="camera_caption fadeFromLeft">            Afilia tu Restaurante, Cafe, Bar ... : Se parte de zonetable.</div>
+			            </div>
+			            <div class="camera-slide-wrapper span8" data-src="{{ STATIC_URL }}img/demo/foto4.jpg">
+			            	<div class="camera_caption fadeFromLeft">            Afilia tu Restaurante, Cafe, Bar ... : Se parte de zonetable.</div>
+			            </div>
+			            <!--{% for directory_slider in list_directory %}
+			            <div class="camera-slide-wrapper span8" data-src="{% if directory_slider.multiuploaderimage_set.all %}{% with directory_slider.multiuploaderimage_set.all|first as image_slider %}{{ STATIC_URL }}{{ image_slider }}{% endwith %}{% else %}img/assets/slideshow/thumbnail-big.jpg{% endif %}">
+			                <div class="camera_caption fadeFromLeft">
+			            {{ directory_slider.title }} (<a href="{{ directory_slider.url_name }}">Ver</a>)
+			                </div>
+			            </div>
+			            {% endfor %}
+			            -->
+			        </div>
+					<!-- End Slider -->
+				</div>
+				<!-- End Span8 -->
+
+				<!-- Begin Span4 Carousel Slider -->
+				<div class="span4 carousel-widget visible-desktop" id="slider-widget">
+					<div class="widget-header">
+						<h3 class="widget-heading">Buscar</h3>
+					</div>
+					<div class="widget-content carousel slide" id="carousel-widget">
+						<form action="/search/1/" method="GET">
+							{{ form.non_field_errors }}
+							{% csrf_token %}
+					        <div id="selction-ajax"></div>
+							<fieldset>
+								<label>Restaurante</label>
+								{{ form_rest.Nombre.errors }}
+								{{ form_rest.Nombre }}
+							</fieldset>
+							<fieldset>
+								<label>Fecha</label>
+								{{ form_rest.Fecha.errors }}
+								{{ form_rest.Fecha }}
+							</fieldset>
+							<fieldset>
+								<label>Categoria</label>
+								{{ form_rest.Categoria.errors }}
+								{{ form_rest.Categoria }}
+							</fieldset>
+							<fieldset style="width: 235px; float: left; position: relative;">
+								<label>Estado</label>
+								{{ form_rest.Estado.errors }}
+								{{ form_rest.Estado }}
+							</fieldset>
+							<div class="btn_submit">
+							   	<button type="submit" class="pull-right btn btn-flat" tabindex="12">Buscar Mesa</button>
+							</div>
+							<br class="clear" />
+						</form>
+					</div>
+				</div>
+				<!-- End Span 4 Carousel Slider -->
+			</section>
+		</div>
+		<!-- Main Slider End -->

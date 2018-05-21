@@ -1,0 +1,372 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]>    <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %} ZoneTable.com - Directorio y reservaciones en línea</title>
+
+		{% block social %}{% endblock %}
+
+		<meta name="author" content="www.zonetable.com" id="author">
+		<meta name="robots" content="index, follow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="{% static 'css/frenzy-blue.css' %}">
+		<link rel="stylesheet" href="{% static 'css/plugins/camera.css' %}">
+
+		<!-- Fav and touch icons -->
+		<link rel="shortcut icon" href="{% static 'img/ico/favicon.png' %}">
+
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'img/ico/apple-touch-icon-114-precomposed.png' %}">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'img/ico/apple-touch-icon-72-precomposed.png' %}">
+		<link rel="apple-touch-icon-precomposed" href="{% static 'img/ico/apple-touch-icon-57-precomposed.png' %}">
+
+		<!-- JS Libs -->
+		<script src="{% static 'js/libs/jquery.js' %}"></script>
+		<script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+		<script src="{% static 'js/plugins/slides.jquery.js' %}"></script>
+		<script src="{% static 'js/plugins/jquery.easing.js' %}"></script>
+		<script src="{% static 'js/plugins/camera.min.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+		<script src="{% static 'js/facebook.js' %}"></script>
+		<script src="{% static 'js/html5.js' %}"></script>
+
+		{% block css %}{% endblock %}
+		{% block js %}{% endblock %}
+	</head>
+	<body>
+		<!--
+		<div id="bg"><img src="{% static 'img/assets/bg/halftone.png' %}" alt="background image" /></div>
+		-->
+
+		<!--///////////////////////////// Header Area //////////////////////////////////-->
+
+		<!-- Header Start -->
+		<header class="header">
+			<div class="bar_top">
+				<div class="container visible-desktop">
+					<div class="row">
+						<div class="span12" role="navigation" id="topnav">
+							<!-- top nav -->
+							<div class="topnav">
+								<div class="pull-left">
+									<span><strong>Soporte Skype:</strong>&nbsp;&nbsp;<a href="skype:zonetable?call">zonetable</a></span>
+								</div>
+								<ul class="pull-right">
+									<!--
+									<li><a href="{% url 'go_contact' %}">Afiliate a ZoneTable.</a></li>
+									-->
+									<li><a href="javascript:whois_click();"><img src="{% static pais_actual1 %}" border="0" alt="{{ pais_actual.country }}" class="flag" /> {{ pais_actual.country }} (Cambiar)</a></li>
+								</ul>
+								<div class="pull-right">
+									<div class="fb-like" data-href="http://www.facebook.com/pages/Gestionar-Mesa/465113386878619" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+								</div>
+								<div class="pull-right" style="margin-right: 10px;">
+									<a href="https://twitter.com/zonetable" class="twitter-follow-button" data-show-count="false" data-lang="es">Follow @zonetable</a>
+									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="nav" class="container">
+				<div class="row">
+				<!-- Logo & Navigation -->
+					<div class="span12" role="navigation" id="mainnav">
+					<!-- Site Logo -->
+					<h1 id="logo" class="visible-desktop"><a href="{% url 'go_principal' %}">ZoneTable</a></h1>
+
+					<!-- Navigation Start -->
+					<nav id="main-navigation" class="visible-desktop">
+						<ul class="first-level">
+							<li class="{% ifequal request.path "/" %}current{% endifequal %}"><a href="{% url 'go_principal' %}">Inicio</a></li>
+							{% if visible == 1 %}
+							<li><a href="post.html">Categorias <span class="icon awe-chevron-down"></span></a>
+								<ul class="second-level">
+									<li><a href="page-leftsidebar.html">Page - Left Sidebar</a></li>
+									<li><a href="page-rightsidebar.html">Page - Right Sidebar</a></li>
+									<li><a href="page-fullwidth.html">Page - Fullwidth</a></li>
+									<li><a href="gallery.html">Gallery</a></li>
+									<li><a href="404.html">404 Error</a></li>
+
+									<li><a href="#">Third Level<span class="pull-right icon awe-chevron-right"></span></a>
+										<ul class="third-level">
+											<li><a href="#">Third Level</a></li>
+											<li><a href="#">Third Level</a></li>
+											<li><a href="#">Third Level</a></li>
+											<li><a href="#">Third Level</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							{% endif %}
+							<li class="{% ifequal request.path '/contact/' %}current{% endifequal %}"><a href="{% url 'go_contact' %}">Contacto</a></li>
+
+						</ul>
+					</nav>
+					<nav id="secondary-navigation" class="visible-desktop">
+						<div class="social-media">
+							<ul>
+								<li><a href="https://www.facebook.com/pages/Zone-Table/465113386878619" target="_blank"><span class="awe-facebook"></span></a></li>
+								<li><a href="https://twitter.com/zonetable" target="_blank"><span class="awe-twitter"></span></a></li>
+                                {% comment %}
+								<li><a href="https://plus.google.com/u/2/100259147150734905011/posts" target="_blank"><span class="awe-google-plus"></span></a></li>
+                                {% endcomment %}
+								<li><a href="skype:zonetable?chat"><span class="ent-skype"></span></a></li>
+							</ul>
+						</div>
+						<div class="pull-right">
+							<ul>
+								<li>
+									<ul>
+										{% if not user.is_authenticated %}
+										<li>
+											<div id="fb-auth" class="fb-login-button" scope="email,user_about_me,friends_about_me,publish_stream,publish_actions">
+											</div>
+										</li>
+										<li style="list-style-type: none;"><a href="#signInModal" data-toggle="modal">Iniciar sesi&oacute;n</a></li>
+										<li><a href="{% url 'go_register' %}">Registro</a></li>
+										{% else %}
+										<li class="dropdown" style="list-style-type: none;">
+											Puntos <span class="badge badge-info">{{ points }}</span>
+										</li>
+										<li class="dropdown" style="list-style-type: none;">
+											<span class="username">Bienvenido, {{ user.first_name }}</span>
+										</li>
+										<li class="dropdown">
+										    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mi Cuenta
+										    	<span class="awe-caret-down icon-white"></span></a>
+										    <ul class="dropdown-menu">
+											    <li><a href="{% url 'go_dashboard' %}"><span class="awe-dashboard"></span> Dashboard</a></li>
+										    	<li><a href="{% url 'go_user_profile' %}"><span class="awe-user"></span> Editar Perfil</a></li>
+										    	<!--
+										    	<li><a href="#"><span class="awe-cog"></span> Configuraci&oacute;n</a></li>
+										    	-->
+										    	<li><a href="{% url 'go_logout' %}" id="logout"><span class="awe-signout"></span> Salir</a></li>
+										    </ul>
+										</li>
+										{% endif %}
+									</ul>
+								</li>
+								{% if visible == 1 %}
+								<li>
+									<form class="search">
+										<input class="input-medium" type="text" placeholder="Buscador&hellip;">
+									</form>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+					<!-- Navigation End -->
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- Header End -->
+
+		<!--///////////////////////////// Slider Area //////////////////////////////////-->
+
+		{% block slider %}
+		{% endblock %}
+
+		<!--///////////////////////////// End Slider Area //////////////////////////////////-->
+
+		<!--///////////////////////////// Main Content Area //////////////////////////////////-->
+
+		{% block content %}
+		{% endblock %}
+
+
+		<!--///////////////////////////// Footer Area //////////////////////////////////-->
+
+		<!-- Footer Start -->
+		<footer class="footer">
+			<div class="container footer-container">
+				<section class="row">
+					<div class="span2 footer-extra">
+						<div class="footer-box">
+							<h4>Menú</h4>
+							<ul>
+								<li><a href="{% url 'go_principal' %}" title="Inicio">Inicio</a></li>
+								<li><a href="{% url 'go_contact' %}" title="Contacto">Contacto</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="span3 footer-extra">
+						<div class="footer-box">
+							<h4>Soporte</h4>
+							<address>
+								<p><span class="ent-skype"></span>&nbsp;&nbsp;Soporte Skype: <a href="skype:zonetable?call">Llamar</a> o <a href="skype:zonetable?chat">Chat</a></p>
+								<p><span class="awe-envelope-alt"></span>&nbsp;&nbsp;<a href="mailto:soporte@zonetable.com">soporte@zonetable.com</a></p>
+							</address>
+						</div>
+					</div>
+					<div class="span3 footer-extra" style="float:right;">
+						<div class="footer-box">
+
+							<div class="footer-box">
+								<h4>S&iacute;guenos en</h4>
+								<ul class="social-media">
+									<li><a href="https://www.facebook.com/pages/Zone-Table/465113386878619" target="_blank"><span class="awe-facebook"></span></a></li>
+									<li><a href="https://twitter.com/zonetable" target="_blank"><span class="awe-twitter"></span></a></li>
+                                    {% comment %}
+									<li><a href="https://plus.google.com/u/2/100259147150734905011/posts" target="_blank"><span class="awe-google-plus"></span></a></li>
+                                    {% endcomment %}
+                                </ul>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</div>
+			<div class="container" role="navigation" id="footer-nav">
+				<section class="row">
+					<div class="footer-menu">
+						<ul>
+							<li><a href="/terms-conditions/" title="T&eacute;rminos y condiciones">T&eacute;rminos y condiciones</a></li>
+							<li><a href="/privacy-policy/" title="Pol&iacute;ticas de privacidad">Pol&iacute;ticas de privacidad</a></li><li><a href="/affiliate/" title="Afiliar Establecimiento">Afiliar Establecimiento</a></li>
+						</ul>
+					</div>
+					<div class="copyright">
+						<p><a href="http://www.zonetable.com" title="zonetable.com">ZoneTable</a> 2013-2014.
+						</p>
+					</div>
+				</section>
+			</div>
+		</footer>
+		<!-- Footer End -->
+
+		<!-- Modal -->
+		<div id="signInModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+			<form method="post" action="#" name="login_form" id="login_form">
+			<div id="login">
+			    <div class="modal-header">
+			    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    	<h3 id="signInModalLabel">INICIAR SESIÓN</h3>
+			    </div>
+				<div class="modal-body">
+						{% csrf_token %}
+						{{ form.non_field_errors }}
+						<div class="message"></div>
+						<p><span><strong>Email:</strong></span> <input type="text" class="span3" name="email" id="email" placeholder="Email"></p>
+						<p><span><strong>Contrase&ntilde;a:</strong></span> <input type="password" class="span3" name="password" id="password" placeholder="Contrase&ntilde;a"></p>
+				</div>
+				<div class="modal-footer">
+					<a href="#" id="btn_forgot">Olvid&oacute; contrase&ntilde;a?</a>
+					<button type="submit" id="btn_login" class="btn btn-primary">Entrar</button>
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+				</div>
+			</div>
+			</form>
+			<form method="post" action="#" name="forgot_form" id="forgot_form">
+			<div id="forgot">
+			    <div class="modal-header">
+			    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    	<h3 id="signInModalLabel">RECUPERAR CONTRASEÑA</h3>
+			    </div>
+				<div class="modal-body">
+						{% csrf_token %}
+						{{ form.non_field_errors }}
+						<div class="message"></div>
+						<p><span><strong>Email:</strong></span> <input type="text" class="span3" name="forgot_email" id="forgot_email" placeholder="Email"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="btn_send_pass" class="btn btn-primary">Enviar contraseña</button>
+					<button class="btn" id="btn_back" aria-hidden="true">Atras</button>
+				</div>
+			</div>
+			</form>
+		</div>
+		<!-- Modal 2 -->
+		<div id="bg_whois"></div>
+			<div id="whois" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="whoisLabel" aria-hidden="true">
+				<form method="post" action="#" name="whois_form" id="whois_form">
+				<div id="login">
+				    <div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    	<h3 id="whoisLabel">Ubicación e idioma</h3>
+				    </div>
+					<div class="modal-body">
+							{% csrf_token %}
+							{{ formulario_whois.non_field_errors }}
+							<div class="message"></div>
+							<p><span><strong>País:</strong></span> {{ formulario_whois.Country }} {{ formulario_whois.Country.errors }}</p>
+							<p><span><strong>Idioma:</strong></span> {{ formulario_whois.Language }} {{ formulario_whois.Language.errors }}</p>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="btn_login" class="btn btn-primary">Entrar</button>
+					</div>
+				</div>
+				</form>
+			</div>
+
+		<script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-1034401-25', 'zonetable.com');
+          ga('send', 'pageview');
+
+        </script>
+       
+		{% comment %}
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  //_gaq.push(['_setAccount', 'UA-1034401-20']);
+		  _gaq.push(['_trackPageview']);
+
+		  ga('create', 'UA-1034401-25', 'zonetable.com');
+		  ga('send', 'pageview');
+
+		  {% if pay_gm %}
+		  _gaq.push(['_addTrans',
+		    '{{ pay.pk }}',    // transaction ID - required
+		    'Pago de Paquete', // affiliation or store name
+		    '{{ pay.price }}', // total - required
+		    '0.00',            // tax
+		    '0.00',            // shipping
+		    '',       // city
+		    'California',     // state or province
+		    'USA'             // country
+		  ]);
+		  _gaq.push(['_addItem',
+		    '{{ pay.pk }}',  // transaction ID - necessary to associate item with transaction
+		    'PUBLICAR',      // SKU/code - required
+		    'Publicar Establecimiento',        // product name
+		    'Olive Medium',  // category or variation
+		    '1.99',          // unit price - required
+		    '1'              // quantity - required
+		  ]);
+		  _gaq.push(['_addItem',
+		    '{{ pay.pk }}',   // transaction ID - necessary to associate item with transaction
+		    'SOPORTE',        // SKU/code - required
+		    'Soporte',        // product name
+		    'Olive Medium',   // category or variation
+		    '0.00',          // unit price - required
+		    '1'               // quantity - required
+		  ]);
+		  _gaq.push(['_trackTrans']);
+		  {% endif %}
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		</script>
+		{% endcomment %}
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	</body>
+</html>

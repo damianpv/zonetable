@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+{% block title %} Mis Reservaciones | {% endblock %}
+{% block social %}	
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="" />
+{% endblock %}
+{% block css %}	
+	<link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+{% endblock %}
+{% block js %}	
+	<script lang="javascript" src="{% static 'js/dj_fw.js' %}"></script>
+	<script type="text/javascript">
+
+		$(document).ajaxStart(function(){
+		    $('#spinner').show();
+		}).ajaxStop(function(){
+		    $('#spinner').hide();
+		});
+
+	</script> 
+{% endblock %}
+
+{% block content %}
+		<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+							
+				<div id="content" class="span8">
+				  
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">Mis Reservaciones</h1>
+										<div class="separator"></div>
+									</div>
+									<div class="article-content my_reservations">
+										{% if list_reservations %}
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<td class="status" style="text-align: center;"><strong>Estado</strong></td>
+													<td><strong>Datos de la Reservación</strong></td>
+													<td style="width:53px"></td>
+													<td class="option" style="text-align: right;"><strong>Cambiar Estado</strong></td>
+												</tr>
+											</thead>
+											<tbody>
+												{% for reservations in list_reservations %}
+												<tr>
+													<td>
+														{% if reservations.status == 0 %}
+														<div class="btn-warning">Pendiente</div>
+														{% elif reservations.status == 1 %}
+														<div class="btn-info">Proceso</div>
+														{% elif reservations.status == 2 %}
+														<div class="btn-danger">Cancelada</div>
+														{% elif reservations.status == 3 %}
+														<div class="btn-danger">Vencida</div>
+														{% elif reservations.status == 4 %}
+														<div class="btn-success">Completada</div>
+														{% endif %}
+													</td>
+													<td>
+														{% if reservations.type == 0 %}
+														<strong>Reservación a:</strong>
+														{% else %}
+														<strong>Servicio a Domicilio de:</strong>
+														{% endif %}
+														{{ reservations.name }} <br />
+														<strong>Lugar:</strong> <a href="/{{ reservations.directory.url_name }}/" target="_blank">{{ reservations.directory.title }}</a>
+														<br />
+														<strong>Fecha:</strong> {{ reservations.date }}. <strong>Hora:</strong> {{ reservations.time|time:"h:i A" }}. ( {{ reservations.people }} Persona{{ reservations.people|pluralize }} )
+													</td>
+													<td><a href="{% url 'go_edit_user_reservation' id_reservation=reservations.pk %}" class="btn">Editar</a></td>
+													<td>
+														{% if reservations.status == 0 %}
+														<div class="btn-group">
+												          <a class="btn" href="#"><i class="icon-cog icon-black"></i></a>
+												          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+												          <ul class="dropdown-menu">
+												            <li><a href="{% url 'go_cancel_user_reservation' id_reservation=reservations.pk %}"><i class="icon-remove"></i> Cancelar</a></li>
+												          </ul>
+												        </div>
+												        {% endif %}
+													</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+											{% if list_reservations.paginator.num_pages > 1 %}
+											<div class="pagination">
+											    <ul>
+													<li><a href="{% url 'go_list_payments' page=1 %}"> << </a></li>
+												{% if list_reservations.has_previous %}
+													<li><a href="{% url 'go_user_reservation' page=list_reservations.previous_page_number %}"> Anterior </a></li>
+												{% else %}
+													<li><a href="{% url 'go_user_reservation' page=1 %}"> Anterior </a></li>
+												{% endif %}
+												{% if list_reservations.has_next %}
+													<li><a href="{% url 'go_user_reservation' page=list_reservations.next_page_number %}"> Siguiente </a></li>
+												{% else %}
+													<li><a href="{% url 'go_user_reservation' page=list_reservations.paginator.num_pages %}"> Siguiente </a></li>
+												{% endif %}
+													<li><a href="{% url 'go_user_reservation' page=list_reservations.paginator.num_pages %}"> >> </a><li>
+												</ul>
+											</div>
+											<div class="num_page"> Página {{ list_reservations.number }} de {{ list_reservations.paginator.num_pages }}</div>
+											{% endif %}
+										{% else %}
+											<br />
+											<p align="center">Aún no tiene reservaciones.</p>
+										{% endif %}
+									    <br class="clear" />
+									</div>
+									<br class="clear" />
+								</article>
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>			
+				
+				{% include "sidebar/right_menu_users.html" %}
+				
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

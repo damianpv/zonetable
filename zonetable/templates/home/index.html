@@ -1,0 +1,164 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block social %}
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="Sitio para la ZoneTable, promocionar restaurantes, bares, cafes." />
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block js %}
+	<script type="text/javascript" src="{% static 'js/autocomplete/jquery.mockjax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/autocomplete/jquery.autocomplete.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/autocomplete/autocomplete.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'js/datepicker/jquery-ui.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'js/datepicker/jquery.ui.datepicker.min.css' %}" />
+	<script src="{% static 'js/datepicker/jquery.ui.core.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datepicker/jquery.ui.datepicker.min.js' %}"></script>
+    <script type="text/javascript">
+	    $(function() {
+			$("#id_Fecha").datepicker({dateFormat:'yy-mm-dd',minDate: new Date(),showButtonPanel:false,showOn: 'both', buttonImage: "{% static 'img/icons/calendar_b.png' %}",});
+		});
+    </script>
+{% endblock %}
+
+{% block slider %}
+	{% include 'sliders/slider.html' %}
+{% endblock %}
+
+{% block content %}
+		<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			{% if visible = 1 %}
+			<section id="popular-content" class="row visible-desktop">
+				<div class="popular-item span3">
+					<div class="popular-image">
+						<a href="#" title="title"><img src="{% static 'img/assets/placeholder/htmlcss.png' %}" alt="image" /></a>
+					</div>
+					<div class="popular-content">
+						<h4><a href="#" title="title">HTML5/CSS3</a></h4>
+						<p>
+							Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis
+							Praesent a tellus vitae nisl vehicula semper.
+						</p>
+					</div>
+				</div>
+				<div class="popular-item span3">
+					<div class="popular-image">
+						<a href="#" title="title"><img src="{% static 'img/assets/placeholder/bootstrap.png' %}" alt="image" /></a>
+					</div>
+					<div class="popular-content">
+						<h4><a href="#" title="title">Build With Bootstrap</a></h4>
+						<p>
+							Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis
+							Praesent a tellus vitae nisl vehicula semper.
+						</p>
+					</div>
+				</div>
+				<div class="popular-item span3">
+					<div class="popular-image">
+						<a href="#" title="title"><img src="{% static 'img/assets/placeholder/lesscss.png' %}" alt="image" /></a>
+					</div>
+					<div class="popular-content">
+						<h4><a href="#" title="title">Powered by LESSCSS</a></h4>
+						<p>
+							Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis
+							Praesent a tellus vitae nisl vehicula semper.
+						</p>
+					</div>
+				</div>
+				<div class="popular-item span3">
+					<div class="popular-image">
+						<a href="#" title="title"><img src="{% static 'img/assets/placeholder/responsive.png' %}" alt="image" /></a>
+					</div>
+					<div class="popular-content">
+						<h4><a href="#" title="title">Responsive Ready</a></h4>
+						<p>
+							Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis
+							Praesent a tellus vitae nisl vehicula semper.
+						</p>
+					</div>
+				</div>
+
+			</section>
+			{% endif %}
+			<section id="main-content" class="row home">
+				<!-- Sidebar Content -->
+				{% include "sidebar/left.html" %}
+				<!-- End Sidebar -->
+
+				<!-- Main Content -->
+				<div id="content" class="span6">
+					<div class="post-lists">
+						<h4 style="padding: 0;margin: 0;">Directorio</h4>
+						<div class="separator" style="padding: 0;margin: 9px 0;"></div>
+						{% if list_directory %}
+						{% for directory in list_directory %}
+						<article class="latest-article listado">
+							{% if visible == 1 %}
+							<div class="article-info">
+								<div class="author-info">
+									<span
+									data-original-title="Posted by Admin"
+									data-image="{% static 'img/assets/slideshow/thumbnail-square.png' %}"
+									data-author-desc="Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis Praesent a tellus vitae nisl vehicula semper."
+									class="ent-pencil">
+									</span>
+								</div>
+								<div class="time">
+									<span
+									class="ent-calendar"
+									data-original-title="Posted On"
+									data-time="11:00 PM" data-date='{"day":"11", "month":"December", "year":"2012"}'>
+									</span>
+								</div>
+								<div class="comment">
+									<span class="ent-comment"
+									data-original-title="Comments 122"
+									data-comment-latest='{"author":"Author Name","authorurl":"http://google.com", "comment":"Ut dignissim aliquet nibh tristique. Donec ullamcorper nulla quis Praesent a tellus vitae nisl vehicula semper.","avatar":"{% static 'img/assets/slideshow/thumbnail-square.png' %}"}' >
+									</span>
+								</div>
+							</div>
+							{% endif %}
+							<div class="article-thumbnail">
+								{% if directory.multiuploaderimage_set.all %}
+								{% with directory.multiuploaderimage_set.all|first as image %}
+									<a href="/{{ directory.url_name }}/" title="{{directory.title}}"><img src="{{ STATIC_URL }}{{ image }}" alt="{{directory.title}}"/></a>
+								{% endwith %}
+								{% elif directory.logo %}
+									<a href="/{{ directory.url_name }}/" title="{{directory.title}}"><img src="{{ STATIC_URL }}{{ directory.logo }}" alt="{{directory.title}}"/></a>
+								{% else %}
+									<a href="/{{ directory.url_name }}/" title="{{directory.title}}"><img src="{% static 'default.jpg' %}" alt="{{directory.title}}"/></a>
+								{% endif %}
+							</div>
+							<div class="article-content-index">
+								<div class="article-excerpt">
+									<p class="titulo">{{directory.title}}</p>
+									<p>
+										<strong>Direcci&oacute;n:</strong> {{directory.address}}
+										<br />
+										<strong>Tel&eacute;fono:</strong> {{directory.phone}}
+									</p>
+									<a href="/{{ directory.url_name }}/" title="read more" class="read_more">Ver m&aacute;s &rarr;</a>
+									</p>
+								</div>
+							</div>
+						</article>
+						<div class="separator separator-home"></div>
+						{% endfor %}
+						{% else %}
+							<p align="center">No se encontraron resultados para mostrar.</p>
+							<p align="center"><a href="{% url 'go_register' %}">Registrate</a> gratis en nuestro sitio. ¿Tienes un Restaurante? <a href="{% url 'go_register' %}">Registrate gratis</a></p>
+						{% endif %}
+					</div>
+				</div>
+				<!-- End Main Content -->
+
+				<!-- Sidebar Right -->
+				{% include "sidebar/right.html" %}
+				<!-- Sidebar End -->
+			</section>
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

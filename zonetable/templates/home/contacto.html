@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+
+{% block title %} Contacto | {% endblock %}
+{% block social %}
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="Contacto" />
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block js %}
+{% endblock %}
+
+{% block content %}
+	<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+
+				<div id="content" class="span13">
+
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">Contacto</h1>
+
+										<div class="separator"></div>
+									</div>
+
+									<div class="article-content">
+										<div class="row-fluid">
+
+											<div class="span6" id="form_contacto">
+												{% if contact_sent %}
+													<br /><br />
+													<p style="text-align:center;"><strong>Muchas gracias</strong></p>
+													<p style="text-align:center;">Su mensaje ha sido enviado, nos pondremos en contacto con usted lo m&aacute;s pronto posible.</p>
+												{% else %}
+													<form action="." method="POST">
+														{% csrf_token %}
+														{{ form.non_field_errors }}
+
+													    <fieldset>
+													    	<label>Nombre (*)</label>
+													    	{{ form.Nombre }}
+													    	{{ form.Nombre.errors }}
+													    </fieldset>
+
+													    <fieldset>
+													    	<label>Email (*)</label>
+													    	{{ form.Email }}
+													    	{{ form.Email.errors }}
+													    </fieldset>
+
+													    <fieldset>
+													    	<label>Tel&eacute;fono</label>
+													    	{{ form.Telefono }}
+													    	{{ form.Telefono.errors }}
+													    </fieldset>
+
+													    <fieldset>
+													    	<label>C&oacute;mo nos conoci&oacute;?</label>
+													    	{{ form.Como_conocio }}
+													    	{{ form.Como_conocio.errors }}
+													    </fieldset>
+
+													    <fieldset>
+													    	<label>Asunto (*)</label>
+													    	{{ form.Asunto }}
+													    	{{ form.Asunto.errors }}
+													    </fieldset>
+
+													    <fieldset>
+													    	<label>Mensaje / Comentarios (*)</label>
+													    	{{ form.Comentarios }}
+													    	{{ form.Comentarios.errors }}
+													    </fieldset>
+													    <div class="button">
+													    	<button type="submit" class="pull-right btn btn-flat">Enviar</button>
+													    </div>
+												    </form>
+											    {% endif %}
+											</div>
+
+											<div class="span6">
+												<p class="color"><em>Atendemos su solicitud los 365 d&iacute;as del a&ntilde;o</em></p>
+												<address>
+													<p><strong>ZoneTable.</strong></p>
+												</address>
+												<address>
+													<p><strong>Soporte:</strong></p>
+													<p>Skype: <a href="callto:zonetable">zonetable</a></p>
+													<p><span class="awe-envelope-alt"></span><a href="mailto:soporte@zonetable.com"> soporte@zonetable.com</a></p>
+												</address>
+												<hr/>
+												<!--
+												<iframe width="540" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;ll=0,0&amp;spn=0,0&amp;t=m&amp;z=4&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/?ie=UTF8&amp;ll=0,0&amp;spn=0,0&amp;t=m&amp;z=4&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+												-->
+											</div>
+
+										</div>
+									</div>
+								</article>
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}

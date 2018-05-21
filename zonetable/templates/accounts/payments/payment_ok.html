@@ -1,0 +1,157 @@
+{% extends 'layout.html' %}
+{% load static from staticfiles %}
+{% block title %} Pagos | {% endblock %}
+{% block social %}	
+	<meta id="keywords" name="keywords" content="" />
+	<meta id="description" name="description" content="" />
+{% endblock %}
+{% block css %}	
+	<link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+{% endblock %}
+{% block js %}	
+	<script lang="javascript" src="{% static 'js/dj_fw.js' %}"></script>
+	<script type="text/javascript">
+
+		$(document).ajaxStart(function(){
+		    $('#spinner').show();
+		}).ajaxStop(function(){
+		    $('#spinner').hide();
+		});
+
+	</script> 
+{% endblock %}
+
+{% block content %}
+		<!-- Main Content Wrapper Start -->
+		<div class="container" role="main">
+			<!-- Main Content -->
+			<section id="main-content" class="row">
+							
+				<div id="content" class="span8">
+				  
+					<div class="post-single" id="post">
+						<div class="content-outer">
+							<div class="content-inner">
+								<article>
+									<div class="article-header">
+										<h1 class="title">Pago{{ msg_title }}</h1>
+										<div class="separator"></div>
+									</div>
+									<div class="article-content package pagos">
+										{% if not error %}
+										<br />
+										<div class="row">
+											<div class="invoice">
+												<div class="left">
+													ID:
+												</div>
+												<div class="right">
+													{{ pay.pk }}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="invoice">
+												<div class="left">
+													Transacción:
+												</div>
+												<div class="right">
+													{{ pay.txn_id }}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="invoice">
+												<div class="left">
+													Fecha Inicio:
+												</div>
+												<div class="right">
+													{{ date_begin }}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="invoice">
+												<div class="left">
+													Fecha Fin:
+												</div>
+												<div class="right">
+													{{ date_end }}
+												</div>
+											</div>
+										</div>
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<td></td>
+													<td class="option"></td>
+												</tr>
+											</thead>
+											<tbody>
+												{% for package in list_package %}
+												<tr>
+													<td>
+														<strong>{{ package.title }}</strong></div>
+													</td>
+													<td style="text-align: right;width: 100px;">
+														{% if package.price %}
+														$ {{ package.price }}
+														{% else %}
+														$&nbsp;&nbsp;&nbsp;0,00
+														{% endif %}
+													</td>
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										<div class="row">
+											<div class="contrato">
+												<div class="left">
+													Tiempo de Contrato (Renovable):
+												</div>
+												<div class="right">
+													{{ pay.pay_months }} Mes{{ pay.pay_months|pluralize:"es" }}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="subtotal">
+												<div class="left">
+													Subtotal:
+												</div>
+												<div class="right">
+													{{ pay.subtotal }}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="total">
+												<div class="left">
+													Total:
+												</div>
+												<div class="right">
+													{{ pay.price }}
+												</div>
+											</div>
+										</div>
+										{% else %}
+											<br /><br />
+											<p style="text-align:center"><strong>{{ msg|safe }}</strong></p>
+										{% endif %}
+									    <br class="clear" />
+									</div>
+								</article>
+							</div>
+							<!-- content inner -->
+						</div>
+						<!-- content outer -->
+					</div>
+				</div>
+				
+				{% include "sidebar/right_menu_users.html" %}
+				
+			</section>
+			<!-- End Main Content -->
+		</div>
+		<!-- Main Content Wrapper End -->
+{% endblock %}
